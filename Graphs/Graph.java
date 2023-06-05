@@ -15,7 +15,7 @@ public class Graph {
         for (Edge e : edges) {
             n = Integer.max(n, Integer.max(e.s, e.d));// compares current max with the new edges start and end node
         }
-        noOfNodes = n+1;
+        noOfNodes = n+1;//this is for the extra 
         for (int i = 0; i <= n; i++) {
             adjList.add(i, new ArrayList<>());
         }
@@ -43,7 +43,7 @@ public class Graph {
     }
 
     public void findAugmentationPath(int start, int destination, int number) {
-        boolean visited[] = new boolean[number ];
+        boolean visited[] = new boolean[number];
         boolean alreadyInPath[] = new boolean[number ];
         LinkedList<Integer> queue = new LinkedList<Integer>();
         visited[start] = true;
@@ -59,6 +59,7 @@ public class Graph {
                     List<Integer> path = new ArrayList<>();
                     while (currentNode != start) {
                         path.add(currentNode);
+                        System.out.println(path);
                         alreadyInPath[currentNode] = true;
                         for (int a : adjList.get(currentNode)) {
                             if (!alreadyInPath[a] && a!=destination) {
@@ -90,10 +91,10 @@ public class Graph {
         for (int i = 1; i < noOfNodes; i++) {
             if (!matched[i]) {
                 if (setB[i]) {
-                    adjList.get(0).add(i);
+                    adjList.get(0).add(i);//adding the path 0 to free node
                 } else {
                     // adjList.get(noOfNodes).add(i);
-                    adjList.get(i).add(noOfNodes);
+                    adjList.get(i).add(noOfNodes);//adding path freenode to destination node
 
                 }
             }
